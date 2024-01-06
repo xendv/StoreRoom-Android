@@ -48,7 +48,7 @@ fun StoreRoomButton(
     showBackground = true,
 )
 @Composable
-private fun StmegiButtonPreview() {
+private fun StoreRoomButtonPreview() {
     Column {
         StoreRoomButton(title = "Im button")
     }

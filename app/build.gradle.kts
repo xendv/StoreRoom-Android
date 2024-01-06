@@ -1,3 +1,6 @@
+import com.xendv.storeroom.StoreroomDependencies.Versions
+import com.xendv.storeroom.StoreroomDependencies
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -49,7 +52,8 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.8.0")
+    implementation(project(":feature:products-feature"))
+    implementation("androidx.core:core-ktx:${Versions.ktx}")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.activity:activity-compose:1.5.1")
@@ -59,6 +63,12 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.test.ext:junit-ktx:1.1.5")
+
+    implementation(project(":ui"))
+    implementation("androidx.core:core-ktx:${Versions.ktx}")
+    implementation(project(mapOf("path" to ":navigation-common")))
+    implementation(project(mapOf("path" to ":data-common")))
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -66,4 +76,24 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation(StoreroomDependencies.Android.coreKtx)
+    implementation(StoreroomDependencies.Android.lifecycleRuntime)
+    implementation(StoreroomDependencies.Compose.composeActivity)
+    implementation(StoreroomDependencies.Compose.composeUi)
+    implementation(StoreroomDependencies.Compose.composePreview)
+    implementation(StoreroomDependencies.Compose.composeMaterial3)
+
+
+
+    implementation(StoreroomDependencies.Android.koinAndroid)
+    implementation(StoreroomDependencies.Compose.navigation)
+    implementation(StoreroomDependencies.Android.navigationAnimation)
+    implementation(StoreroomDependencies.Android.systemUiController)
+    implementation(StoreroomDependencies.Android.ktxSerializationJson)
+    implementation(StoreroomDependencies.Android.retrofit)
+    implementation(StoreroomDependencies.Android.retrofitConverterKtx)
+    implementation(StoreroomDependencies.Android.loggingInterceptor)
+    implementation(StoreroomDependencies.Android.coroutines)
+    implementation(StoreroomDependencies.Android.koinCompose)
 }

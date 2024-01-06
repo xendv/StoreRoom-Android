@@ -18,3 +18,12 @@ dependencyResolutionManagement {
 rootProject.name = "StoreRoom"
 include(":app")
 include(":ui")
+include(":data")
+include(":data:products-data")
+include(":feature")
+include(":feature:products-feature")
+
+include(":domain")
+include(":domain:products-domain")
+include(":navigation-common")
+include(":data-common")
