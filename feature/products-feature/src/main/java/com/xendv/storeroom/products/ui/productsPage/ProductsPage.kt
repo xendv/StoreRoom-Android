@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.xendv.storeroom.products.ui.items.ProductItem
 import com.xendv.storeroom.products.ui.items.ProductItemPlaceholder
-import com.xendv.storeroom.ui.colors.black
+import com.xendv.storeroom.ui.colors.lightGray
 
 @Composable
 fun ProductsPage(viewModel: ProductsViewModel) {
@@ -32,8 +32,8 @@ fun ProductsPage(viewModel: ProductsViewModel) {
                     if (it != 3) {
                         Divider(
                             modifier = Modifier
-                                .padding(start = 127.dp),
-                            color = black,
+                                .padding(horizontal = 16.dp),
+                            color = lightGray,
                             thickness = 1.dp
                         )
                     }
@@ -49,8 +49,8 @@ fun ProductsPage(viewModel: ProductsViewModel) {
                     if (index < items.size - 1) {
                         Divider(
                             modifier = Modifier
-                                .padding(start = 127.dp),
-                            color = black,
+                                .padding(horizontal = 16.dp),
+                            color = lightGray,
                             thickness = 1.dp
                         )
                     }
