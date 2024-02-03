@@ -10,7 +10,6 @@ android {
 
     defaultConfig {
         minSdk = 28
-        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -28,6 +27,8 @@ android {
 dependencies {
 
     implementation(project(":data:products-data"))
+    implementation(project(":navigation-common"))
+
     implementation(StoreroomDependencies.Android.coreKtx)
     implementation(StoreroomDependencies.Android.ktxSerializationJson)
     implementation(StoreroomDependencies.Android.retrofit)

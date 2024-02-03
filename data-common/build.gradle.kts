@@ -1,9 +1,39 @@
+import com.xendv.storeroom.StoreroomDependencies
+
 plugins {
-    id("java-library")
-    id("org.jetbrains.kotlin.jvm")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id("kotlin-android")
+    kotlin("plugin.serialization")
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+android {
+    namespace = "com.xendv.storeroom.data.common"
+    compileSdk = 33
+
+    defaultConfig {
+        minSdk = 22
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+}
+
+dependencies {
+    implementation(StoreroomDependencies.Android.coreKtx)
+    implementation(StoreroomDependencies.Android.ktxSerializationJson)
+    implementation(StoreroomDependencies.Android.retrofit)
+    implementation(StoreroomDependencies.Android.retrofitConverterKtx)
+    implementation(StoreroomDependencies.Android.coroutines)
+    api(StoreroomDependencies.Compose.pagingRuntime)
+    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("com.google.android.material:material:1.5.0")
+
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

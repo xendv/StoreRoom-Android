@@ -1,7 +1,7 @@
 package com.xendv.storeroom.products.di
 
-import com.stmegi.app.products.domain.usecases.ProductsStateUseCases
-import com.stmegi.app.products.domain.usecases.ProductsUseCases
+import com.xendv.storeroom.products.ProductsStateUseCases
+import com.xendv.storeroom.products.ProductsUseCases
 import com.xendv.storeroom.products.data.api.ProductsApi
 import com.xendv.storeroom.products.data.repositories.ProductRepository
 import com.xendv.storeroom.products.data.repositories.ProductRepositoryImpl
@@ -14,7 +14,6 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 
 internal val dataModule = module {
-    //factoryOf(::ProductsParser)
 
     single<ProductsApi> {
         get<Retrofit>().create(ProductsApi::class.java)
@@ -41,6 +40,7 @@ internal val viewModelModule = module {
         ProductsViewModel(
             productsUseCases = get(),
             productsStateUseCases = get(),
+            navigator = get(),
         )
     }
 }

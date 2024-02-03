@@ -38,6 +38,4 @@ val networkModule = module {
         HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
     }
-
-    //factoryOf(::MaterialsParser)
 }

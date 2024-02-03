@@ -1,8 +1,10 @@
 package com.xendv.storeroom.products.ui.items
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -18,6 +20,7 @@ import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.material.fade
 import com.google.accompanist.placeholder.material.placeholder
 import com.xendv.storeroom.products.data.entities.ProductItem
+import com.xendv.storeroom.products.ui.productsPage.EditAction
 import com.xendv.storeroom.ui.R
 import com.xendv.storeroom.ui.cards.CrudContentCard
 import com.xendv.storeroom.ui.colors.gray
@@ -27,22 +30,31 @@ import com.xendv.storeroom.ui.colors.lightGray
 fun ProductItem(
     modifier: Modifier = Modifier,
     item: ProductItem,
+    onAction: (EditAction) -> Unit = {},
 ) {
     CrudContentCard(
         modifier = modifier,
         header = item.name.orEmpty(),
-        additionalText = item.barcode + " // " + item.sku,
+        additionalText = item.barcode + "\n" + item.sku,
         content = {
-            IconButton(onClick = {}) {
+            IconButton(
+                onClick = {
+                    onAction(EditAction.Edit(item))
+                }
+            ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_baseline_edit_24),
+                    painter = painterResource(id = R.drawable.ic_edit),
                     tint = gray,
                     contentDescription = "Изменить"
                 )
             }
-            IconButton(onClick = {}) {
+            IconButton(
+                onClick = {
+                    onAction(EditAction.Delete(item))
+                }
+            ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_baseline_delete_outline_24),
+                    painter = painterResource(id = R.drawable.ic_delete),
                     tint = Color.Red,
                     contentDescription = "Удалить"
                 )
@@ -57,31 +69,17 @@ fun ProductItemPlaceholder(
 ) {
     Row(
         modifier = modifier
-            .padding(horizontal = 26.dp, vertical = 19.dp)
+            .padding(horizontal = 26.dp, vertical = 8.dp)
     ) {
-        Column(
+        Box(
             modifier = Modifier
-                .weight(1f),
-        ) {
-            Text(
-                text = "",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .placeholder(
-                        visible = true,
-                        shape = MaterialTheme.shapes.medium,
-                        highlight = PlaceholderHighlight.fade(),
-                    ),
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.SemiBold,
-            )
-            Text(
-                modifier = Modifier
-                    .padding(top = 17.dp),
-                text = "",
-                style = MaterialTheme.typography.labelSmall,
-                color = lightGray
-            )
-        }
+                .fillMaxWidth()
+                .heightIn(min = 80.dp)
+                .placeholder(
+                    visible = true,
+                    shape = MaterialTheme.shapes.medium,
+                    highlight = PlaceholderHighlight.fade(),
+                )
+        )
     }
 }

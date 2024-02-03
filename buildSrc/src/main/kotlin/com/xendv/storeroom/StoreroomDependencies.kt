@@ -23,6 +23,8 @@ object StoreroomDependencies {
 
         const val koinAndroid = "3.4.0"
         const val koinCompose = "3.4.3"
+
+        const val zxingWrapper = "4.3.0"
     }
 
     object Compose {
@@ -67,6 +69,9 @@ object StoreroomDependencies {
         const val placeholderMaterial = "com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}"
         const val navigationAnimation = "com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}"
         const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
-    }
+        const val permissions = "com.google.accompanist:accompanist-permissions:${Versions.accompanist}"
 
+        //ZXing
+        const val zxingWrapper = "com.journeyapps:zxing-android-embedded:${Versions.zxingWrapper}"
+    }
 }

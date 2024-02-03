@@ -29,7 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.xendv.storeroom.ui.colors.black
-import com.xendv.storeroom.ui.colors.lightGray
+import com.xendv.storeroom.ui.colors.paleGray
 import com.xendv.storeroom.ui.theme.StoreRoomTheme
 
 @Composable
@@ -38,7 +38,7 @@ fun StoreRoomTabs(
     titles: List<String> = emptyList(),
     initialIndex: Int = 0,
     tabColors: TabColors = TabColors.default(),
-    onTabClick: (Int) -> Boolean = { true },
+    onTabClick: (Int) -> Unit = {},
 ) {
 
     var selectedIndex by rememberSaveable(initialIndex) {
@@ -67,9 +67,8 @@ fun StoreRoomTabs(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null,
                     ) {
-                        if (onTabClick(index)) {
-                            selectedIndex = index
-                        }
+                        selectedIndex = index
+                        onTabClick(index)
                     },
                 title = title,
                 selected = selectedIndex == index,
@@ -135,7 +134,7 @@ data class TabColors(
     companion object {
         @Composable
         fun default(): TabColors = TabColors(
-            indicatorColor = lightGray,
+            indicatorColor = paleGray,
             normalTextColor = black,
             containerColor = MaterialTheme.colorScheme.surface,
             contentColor = MaterialTheme.colorScheme.onSurface,

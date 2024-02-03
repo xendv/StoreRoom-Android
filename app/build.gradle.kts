@@ -53,6 +53,11 @@ android {
 dependencies {
 
     implementation(project(":feature:products-feature"))
+    implementation(project(":feature:products-unit-feature"))
+    implementation(project(":feature:expense-feature"))
+    implementation(project(":feature:expense-unit-feature"))
+    implementation(project(":feature:lot-feature"))
+
     implementation("androidx.core:core-ktx:${Versions.ktx}")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
@@ -65,7 +70,6 @@ dependencies {
     implementation("androidx.test.ext:junit-ktx:1.1.5")
 
     implementation(project(":ui"))
-    implementation("androidx.core:core-ktx:${Versions.ktx}")
     implementation(project(mapOf("path" to ":navigation-common")))
     implementation(project(mapOf("path" to ":data-common")))
 

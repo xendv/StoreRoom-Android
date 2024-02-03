@@ -1,26 +1,30 @@
-package com.stmegi.app.products.domain.usecases
+package com.xendv.storeroom.products
 
-import androidx.paging.cachedIn
 import com.xendv.storeroom.products.data.entities.ProductItem
 import com.xendv.storeroom.products.data.repositories.ProductRepository
-import com.xendv.storeroom.products.data.utils.cachedIn
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flow
+import com.xendv.storeroom.products.data.repositories.ProductStateRepository
 
 class ProductsUseCases(
     private val productsRepository: ProductRepository,
+    private val productStateRepository: ProductStateRepository,
 ) {
 
-    fun getProducts(
-        scope: CoroutineScope,
-    ): StateFlow<List<ProductItem>> = flow {
-        val products = productsRepository.fetchProducts()
-        emit(products)
-    }.cachedIn(scope)
+    val items = productStateRepository.items
 
-    private companion object {
-        const val INITIAL_PAGE_NUMBER = 1
-        const val DEFAULT_PAGE_SIZE = 4
+    suspend fun fetchItems() {
+        val products = productsRepository.fetchItems()
+        productStateRepository.setItems(products)
+    }
+
+    suspend fun deleteItem(item: ProductItem): Boolean {
+        return productsRepository.deleteItem(item)
+    }
+
+    suspend fun updateItem(item: ProductItem): ProductItem {
+        return productsRepository.updateItem(item)
+    }
+
+    suspend fun createItem(item: ProductItem): ProductItem {
+        return productsRepository.createItem(item)
     }
 }
